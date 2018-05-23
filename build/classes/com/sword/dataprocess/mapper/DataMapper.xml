@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sword.dataprocess.mapper.DataMapper" > 
+
+	<select id="dataCount" resultType="int">
+		select count(1) from tc_aau_file
+	</select>
+
+
+<resultMap type="dataProcess" id="datdProcessMap">
+	<id column="tc_aau01" property="p_id"/>
+	<result column="IMA02" property="p_guige"/>
+	<result column="ima021" property="p_name"/>
+	<result column="TC_AAU06" property="p_xdata"/>
+	<result column="TC_AAU07" property="p_jdate"/>
+	<result column="TC_AAU09" property="p_descCount"/>
+</resultMap>
+
+<select id="findAll" resultMap="datdProcessMap">
+	select t.TC_AAU01 , 
+	i.IMA02 ,
+	i.ima021 , 
+	t.TC_AAU06 ,
+	t.TC_AAU07 ,
+	t.TC_AAU09  
+<!-- 	from SWORD.IMA_FILE i, SWORD.TC_AAU_FILE t where i.ima01 = t.tc_aau01 -->
+	from IMA_FILE i, TC_AAU_FILE t where i.ima01 = t.tc_aau01
+</select>
+
+<insert id="insertdata" parameterType="dataProcess">
+<!-- 	INSERT INTO SWORD.TC_AAU_FILE ("TC_AAU01", "TC_AAU03",  "TC_AAU06", "TC_AAU07", "TC_AAU09",  "TC_AAU13", "TC_AAU14") VALUES (#{dataProcess.p_id},  '00000000', TO_DATE(#{dataProcess.p_xdata}, 'SYYYY-MM-DD HH24:MI:SS'), TO_DATE(#{dataProcess.p_jdate}, 'SYYYY-MM-DD HH24:MI:SS'),#{dataProcess.p_descCount},  #{dataProcess.p_version}, '0') -->
+	INSERT INTO TC_AAU_FILE ("TC_AAU01","TC_AAU02", "TC_AAU03",  "TC_AAU06", "TC_AAU07", "TC_AAU09",  "TC_AAU13", "TC_AAU14") VALUES (#{dataProcess.p_id}, #{dataProcess.p_priority}, '00000000', TO_DATE(#{dataProcess.p_xdata}, 'SYYYY-MM-DD HH24:MI:SS'), TO_DATE(#{dataProcess.p_jdate}, 'SYYYY-MM-DD HH24:MI:SS'),#{dataProcess.p_descCount},  #{dataProcess.p_version}, '0')
+</insert>
+
+<insert id="insertToAAT" parameterType="com.sword.dataprocess.pojo.Tcaat">
+<!-- 	INSERT INTO SWORD.TC_AAT_FILE ("TC_AAT01") VALUES (#{p_version})  -->
+<!-- 	INSERT INTO TC_AAT_FILE ("TC_AAT01") VALUES (#{p_version})  -->
+INSERT INTO TC_AAT_FILE ("TC_AAT01", "TC_AAT02", "TC_AAT03", "TC_AAT04", "TC_AAT05", "TC_AAT06", "TC_AAT07", "TC_AAT10", "TC_AAT11", "TC_AAT12", "TC_AAT13", "TC_AAT14", "TC_AAT15", "TC_AAT16", "TC_AAT17", "TC_AAT18", "TC_AAT19", "TC_AAT20", "TC_AAT21", "TC_AAT22", "TC_AAT23", "TC_AAT24", "TC_AAT25", "TC_AAT27", "TC_AAT28", "TC_AAT29", "TC_AAT30", "TC_AAT31", "TC_AAT32", "TC_AAT33", "TC_AAT34", "TC_AAT36", "TC_AAT37", "TC_AAT38") VALUES (#{tcaat.t_version}, #{tcaat.t_sdata}, TO_DATE(#{tcaat.t_ddata}, 'SYYYY-MM-DD HH24:MI:SS'), TO_DATE(#{tcaat.t_ddata}, 'SYYYY-MM-DD HH24:MI:SS'), 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', '0', '0', 'N', '0', 'N', '0', 'N', '0', 'N', 'N', 'N', 'N', 'N', 'N', '0', '0', '0')
+</insert>
+
+</mapper>
