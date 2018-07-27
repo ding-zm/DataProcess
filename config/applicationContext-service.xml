@@ -11,30 +11,30 @@
 	<context:component-scan base-package="com.sword.dataprocess.service"/>
 	
 	<!-- 事务管理器 -->
-<!-- 	 <bean id="transactionManager" -->
-<!-- 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+	 <bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 <!-- 		数据源 -->
-<!-- 		<property name="dataSource" ref="dataSource" /> -->
-<!-- 	</bean>  -->
+		<property name="dataSource" ref="dataSource" />
+	</bean> 
 	<!-- 通知 -->
-<!-- 	 <tx:advice id="txAdvice" transaction-manager="transactionManager"> -->
-<!-- 		<tx:attributes> -->
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
 <!-- 			传播行为 -->
-<!-- 			<tx:method name="import*" propagation="REQUIRED" /> -->
-<!-- 			<tx:method name="insert*" propagation="REQUIRED" /> -->
-<!-- 			<tx:method name="delete*" propagation="REQUIRED" /> -->
-<!-- 			<tx:method name="update*" propagation="REQUIRED" /> -->
-<!-- 			<tx:method name="find*" propagation="SUPPORTS" read-only="true" /> -->
-<!-- 			<tx:method name="get*" propagation="SUPPORTS" read-only="true" /> -->
-<!-- 		</tx:attributes> -->
-<!-- 	</tx:advice>  -->
+			<tx:method name="import*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice> 
 	<!-- 切面 -->
-<!-- 	 <aop:config> -->
-<!-- 	 	<aop:pointcut id="operation" expression="execution(* com.sword.dataprocess.service.*.*(..))" /> -->
-<!--    	 	<aop:advisor advice-ref="txAdvice" pointcut-ref="operation" /> -->
-<!-- 		<aop:advisor advice-ref="txAdvice" -->
-<!-- 			pointcut="execution(* com.sword.dataprocess.service*.*.*(..))" /> -->
-<!-- 	</aop:config> -->
+	 <aop:config>
+	 	<aop:pointcut id="operation" expression="execution(* com.sword.dataprocess.service.*.*(..))" />
+   	 	<aop:advisor advice-ref="txAdvice" pointcut-ref="operation" />
+		<aop:advisor advice-ref="txAdvice"
+			pointcut="execution(* com.sword.dataprocess.service*.*.*(..))" />
+	</aop:config>
 	 
 
 </beans>
