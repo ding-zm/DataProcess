@@ -44,7 +44,7 @@ public class DataController {
         return list;  
     }   
 	
-// 文件导出
+// 文件导出的实现
 	@RequestMapping("/export")
 	public void exportXls(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		// 一个流
