@@ -1,14 +1,8 @@
 package com.sword.dataprocess.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.sword.dataprocess.pojo.DataProcess;
+import com.sword.dataprocess.service.DataService;
+import com.sword.dataprocess.utils.FileUtils;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.sword.dataprocess.pojo.DataProcess;
-import com.sword.dataprocess.service.DataService;
-import com.sword.dataprocess.utils.FileUtils;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.List;
 
 @Controller
 public class DataController {
@@ -44,8 +41,8 @@ public class DataController {
         return list;  
     }   
 	
-// 文件导出的实现
-	@RequestMapping("/export")
+// 文件导出的代码实现
+	@RequestMapping("port")
 	public void exportXls(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		// 一个流
 		// 两个头
